@@ -23,11 +23,11 @@
           [hidden]="title.valid || title.pristine"
           class="alert alert-danger"
         >
-          title is required!
+          title is not valid!
         </div>
 
         <div *ngIf="fieldInvalid('title')" class="alert alert-danger">
-          field title is not valid!
+          field title is required!
         </div>
       </div>
 
