@@ -1,0 +1,21 @@
+<div class="card" *ngIf="task">
+  <div class="card-header">
+    <em
+      >Estado:
+      <span class="badge bg-success">
+        {{ task.finished ? "finalizada" : "pendiente" }}</span
+      >
+    </em>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{ task.title }}</h5>
+    <p class="card-text">
+      <em>
+        {{ task.description }}
+      </em>
+    </p>
+
+    <p *ngIf="task.status"><strong>Status:</strong>{{ task.status }}</p>
+    <a class="btn btn-primary" (click)="back()">Regresar</a>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<h1>Lista de Tareas</h1>
+<hr />
+<!-- <pre>{{ _tasks | json }}</pre> -->
+<div class="row" *ngIf="_tasks != null && _tasks.length > 0; else divNoContent">
+  <div class="col">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">title</th>
+          <th scope="col">createAt</th>
+          <th scope="col">ecDate</th>
+          <th scope="col">finished</th>
+          <th scope="col">actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of _tasks">
+          <td>
+            <em>
+              {{ task.title }}
+            </em>
+          </td>
+          <td>{{ task.createAt | date : "YYYY-MM-dd" }}</td>
+          <td>{{ task.ecDate | date : "YYYY-MM-dd" }}</td>
+          <td>{{ task.finished ? "finalizada" : "pendiente" }}</td>
+
+          <td>
+            <i class="fa fa-search" [routerLink]="['/tasks', task.id]"> </i>
+            <i class="fa fa-pencil" [routerLink]="['/tasks/edit', task.id]">
+            </i>
+            <i class="fa fa-trash" (click)="removeTask(task.id)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<ng-template #divNoContent>
+  <div class="alert alert-info">No hay datos !</div>
+</ng-template>
+
+<button class="btn btn-primary float-end" (click)="toAdd()">
+  <i class="fa fa-plus"></i>
+  Crear Nueva
+</button>

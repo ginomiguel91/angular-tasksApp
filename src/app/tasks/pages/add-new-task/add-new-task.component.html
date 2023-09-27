@@ -1,0 +1,115 @@
+<h1>{{ newTask.id ? "Editar" : "Nueva" }} Tarea</h1>
+<hr />
+<div class="row mt-5">
+  <div class="col">
+    <form (ngSubmit)="createTask()" #taskForm="ngForm" class="row g-3">
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label"
+          ><i class="fa fa-asterisk" style="color: red"></i>title</label
+        >
+        <div class="col-sm-8">
+          <input
+            type="text"
+            [(ngModel)]="newTask.title"
+            name="title"
+            #title="ngModel"
+            class="form-control"
+            required
+            minlength="6"
+          />
+        </div>
+
+        <div
+          [hidden]="title.valid || title.pristine"
+          class="alert alert-danger"
+        >
+          title is required!
+        </div>
+
+        <div *ngIf="fieldInvalid('title')" class="alert alert-danger">
+          field title is not valid!
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label">
+          <i class="fa fa-asterisk" style="color: red"></i>description</label
+        >
+        <div class="col-sm-8">
+          <textarea
+            [(ngModel)]="newTask.description"
+            name="description"
+            #description="ngModel"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+            required
+            minlength="20"
+          ></textarea>
+        </div>
+
+        <div
+          [hidden]="description.valid || description.pristine"
+          class="alert alert-danger"
+        >
+          description is required!
+        </div>
+
+        <div *ngIf="fieldInvalid('description')" class="alert alert-danger">
+          field description is not valid!
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label">createAt</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            [(ngModel)]="newTask.createAt"
+            name="createAt"
+            class="form-control"
+            placeholder="YYYY-MM-dd"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-4 col-form-label">ecDate</label>
+        <div class="col-sm-8">
+          <input
+            type="text"
+            [(ngModel)]="newTask.ecDate"
+            name="ecDate"
+            class="form-control"
+            placeholder="YYYY-MM-dd"
+          />
+        </div>
+      </div>
+
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          [(ngModel)]="newTask.finished"
+          name="finished"
+          value=""
+          id="flexCheckChecked"
+        />
+        <label class="form-check-label" for="flexCheckChecked">
+          finished
+        </label>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button
+          class="btn btn-success"
+          type="submit"
+          [disabled]="taskForm.form.invalid"
+        >
+          <i class="fa fa-check"></i>{{ newTask.id ? "Actualizar" : "Guardar" }}
+        </button>
+        <a class="btn btn-danger" [routerLink]="['/list']"> Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
