@@ -29,6 +29,14 @@
         <div *ngIf="fieldInvalid('title')" class="alert alert-danger">
           field title is required!
         </div>
+        <!-- Otra forma de hacerlo -->
+        <!-- <div *ngIf="title.errors?.['minlength']" class="alert alert-danger">
+          Title must be at least 6 characters long.
+        </div> -->
+
+        <div *ngIf="minlengthError('title')" class="alert alert-danger">
+          Title must be at least 6 characters long.
+        </div>
       </div>
 
       <div class="mb-3 row">
@@ -57,6 +65,17 @@
 
         <div *ngIf="fieldInvalid('description')" class="alert alert-danger">
           field description is not valid!
+        </div>
+        <!-- otra forma de hacerlo -->
+        <!-- <div
+          *ngIf="description.errors?.['minlength']"
+          class="alert alert-danger"
+        >
+          Description must be at least 20 characters long.
+        </div> -->
+
+        <div *ngIf="minlengthError('description')" class="alert alert-danger">
+          Description must be at least 20 characters long.
         </div>
       </div>
 

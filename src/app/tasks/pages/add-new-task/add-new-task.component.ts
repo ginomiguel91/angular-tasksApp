@@ -77,4 +77,8 @@ export class AddNewTaskComponent implements OnInit {
       this.taskForm?.controls[field]?.touched
     );
   }
+
+  minlengthError(field: string): boolean {
+    return this.taskForm?.form.get(field)?.errors?.['minlength'];
+  }
 }
